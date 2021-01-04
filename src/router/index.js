@@ -1,23 +1,60 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
+// import Films from '@/views/Films/Index'
+// import NowPlaying from '@/views/Films/NowPlaying'
+// import ComingSoon from '@/views/Films/ComingSoon'
+// import Detail from '@/views/Films/Detail'
+// import Cinemas from '@/views/Cinemas/Index'
+// import Center from '@/views/Center/Index'
+
+import filmRouter from './routers/film'
+import cinemaRouter from './routers/cinema'
+import centerRouter from './routers/center'
+
+
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+
+  
+  {path: '/', redirect: '/films/nowPlaying'},
+
+  ...filmRouter,
+  cinemaRouter,
+  centerRouter
+
+
+
+  // 电影模块
+        // 电影模块父
+        // 正在热映
+        // 即将上映
+  // { 
+  //   path:'/films',
+  //   component: Films,
+  //   children:[
+  //     { path: 'nowPlaying', component: NowPlaying},
+  //     { path: 'comingSoon', component: ComingSoon}
+  //   ]
+  // },
+  // // 电影详情
+  // {
+  //   path:'/films',
+  //   component: Detail,
+  // },
+  // 影院模块
+  // {
+  //   path: '/cinemas',
+  //   component: Cinemas,
+  // },
+  // 个人中心
+    // {
+    //   path: "/center",
+    //   component: Center,
+    // }
+
+
 ]
 
 const router = new VueRouter({
